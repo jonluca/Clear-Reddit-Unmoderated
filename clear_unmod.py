@@ -1,4 +1,5 @@
 import praw
+from threading import Thread
 
 try:
 	# try to read from config.py
@@ -18,11 +19,15 @@ if USE_2FA:
 r = praw.Reddit(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent="approve_unmod", username=USERNAME,
                 password=PASSWORD)
 
+def approve_post(post):
+	post.mod.approve()
+	print(post)
+
 # Iterate over all subreddits the user mods
 for sub in r.user.moderator_subreddits(limit=None):
 	# Get all unmoderated posts
 	posts = [post for post in sub.mod.unmoderated(limit=None)]
 	# Approve them and print ids
 	for post in posts:
-		post.mod.approve()
-		print(post)
+		Thread(target=approve_post,args=[post]).start()
+
