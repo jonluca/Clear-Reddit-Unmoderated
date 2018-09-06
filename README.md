@@ -37,4 +37,4 @@ To get your client ID and secret, create [an app here](https://www.reddit.com/pr
 
 ### 2FA
 
-If you are using 2 factor authentication, you must set USE_2FA to True, and input your one time passcode at runtime. 
+If you are using 2 factor authentication, you must set USE_2FA to True, and input your one time passcode at runtime.
