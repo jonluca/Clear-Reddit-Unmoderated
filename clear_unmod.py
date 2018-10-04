@@ -1,6 +1,6 @@
 import praw
 from threading import Thread
-
+import time
 try:
 	# try to read from config.py
 	from account import *
@@ -21,13 +21,18 @@ r = praw.Reddit(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent="ap
 
 def approve_post(post):
 	post.mod.approve()
-	print(post)
+	print(post.permalink)
 
 # Iterate over all subreddits the user mods
-for sub in r.user.moderator_subreddits(limit=None):
 	# Get all unmoderated posts
-	posts = [post for post in sub.mod.unmoderated(limit=None)]
-	# Approve them and print ids
-	for post in posts:
+# Approve them and print ids
+def clear():
+	for post in r.subreddit('churning').mod.modqueue(limit=None):
 		Thread(target=approve_post,args=[post]).start()
+		time.sleep(0.25)
+	clear()
 
+clear()
+
+# for item in reddit.subreddit('churning').mod.modqueue(limit=None):
+# 	Thread(target=approve_post,args=[post]).start()		
