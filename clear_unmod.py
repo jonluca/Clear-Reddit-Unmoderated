@@ -27,7 +27,7 @@ def approve_post(post):
 	# Get all unmoderated posts
 # Approve them and print ids
 def clear():
-	for post in r.subreddit('damnthatsinteresting').mod.modqueue(limit=None):
+	for post in r.subreddit('damnthatsinteresting').mod.unmoderated(limit=None):
 		Thread(target=approve_post,args=[post]).start()
 		time.sleep(0.25)
 	clear()
