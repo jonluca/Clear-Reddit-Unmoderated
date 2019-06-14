@@ -20,9 +20,9 @@ r = praw.Reddit(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent="ap
 prev_link = ""
 links = []
 for i in range(13, 0, -1):
-    title = "The Punisher Discussion Thread - S02E%02d" % i
+    title = "Jessica Jones Discussion Thread - S03E%02d" % i
 
-    body = """This thread is for discussion of The Punisher S02E%02d.
+    body = """This thread is for discussion of Jessica Jones S02E%02d.
 
 **DO NOT** post spoilers in this thread for any subsequent episodes. Doing so will result in a ban.
 
